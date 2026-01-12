@@ -1,0 +1,197 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Shop | Pastel Sweets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pastel-blue: #E3F2FD;
+            --pastel-pink: #FCE4EC;
+            --accent-pink: #F8BBD0;
+            --text-color: #5D5D5D;
+            --white: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text-color);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2 {
+            font-family: 'Shippori Mincho', serif;
+            font-weight: 500;
+        }
+
+        /* Header */
+        header {
+            padding: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-pink));
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            letter-spacing: 0.1em;
+            color: var(--white);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--pastel-blue);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: var(--pastel-pink);
+            border-radius: 50%;
+            top: -50px;
+            right: -50px;
+            opacity: 0.6;
+        }
+
+        /* Concept */
+        .concept {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Product Section */
+        .products {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            background-color: #fafafa;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            width: 300px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-img {
+            height: 250px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .img-blue { background-color: var(--pastel-blue); }
+        .img-pink { background-color: var(--pastel-pink); }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .price {
+            display: block;
+            margin: 10px 0;
+            color: var(--accent-pink);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: var(--accent-pink);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">PASTEL COOKIE</div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h2>甘い、しあわせを贈る。</h2>
+            <p>こだわりの素材で焼いた、動物たちのクッキー缶</p>
+        </div>
+    </section>
+
+    <section class="concept">
+        <h2>Our Concept</h2>
+        <p>韓国のカフェのような、淡くて優しい世界観を詰め込みました。<br>
+        大切な人へのギフトや、自分へのご褒美に。</p>
+    </section>
+
+    <section class="products">
+        <div class="product-card">
+            <div class="product-img img-blue">
+                [くまさんクッキー缶 画像]
+            </div>
+            <div class="product-info">
+                <h3>くまさんクッキー缶</h3>
+                <p>ココア味のくまさんと、アイシングクッキーのセット。</p>
+                <span class="price">¥2,800 (tax in)</span>
+                <a href="#" class="btn">詳細をみる</a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <div class="product-img img-pink">
+                [うさぎさんくっきー缶 画像]
+            </div>
+            <div class="product-info">
+                <h3>うさぎさんくっきー缶</h3>
+                <p>いちご味のうさぎさんと、お花のクッキーのセット。</p>
+                <span class="price">¥2,800 (tax in)</span>
+                <a href="#" class="btn">詳細をみる</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2024 Pastel Cookie Shop. All rights reserved.
+    </footer>
+
+</body>
+</html>
