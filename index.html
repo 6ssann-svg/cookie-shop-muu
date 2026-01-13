@@ -3,192 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mumuクッキー | 手作りクッキーのお店</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    <title>mumucookies | シックで特別な手作りクッキー</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&family=Shippori+Mincho:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --pastel-blue: #E3F2FD;
-            --pastel-pink: #FCE4EC;
-            --accent-pink: #F8BBD0;
-            --text-color: #5D5D5D;
+            --dark-brown: #5D4037;   /* シックなブラウン */
+            --light-brown: #A1887F;  /* 柔らかなブラウン */
+            --pastel-pink: #FCE4EC;  /* パステルピンク */
+            --bg-cream: #FAF7F2;     /* クリーム色の背景 */
             --white: #ffffff;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; } /* スムーズスクロール */
+
         body {
-            margin: 0;
-            padding: 0;
             font-family: 'Noto Sans JP', sans-serif;
-            color: var(--text-color);
-            background-color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden; /* スマホでの横揺れ防止 */
+            color: var(--dark-brown);
+            background-color: var(--bg-cream);
+            line-height: 1.8;
         }
 
-        h1, h2, h3 { font-family: 'Shippori Mincho', serif; font-weight: 500; }
+        h1, h2, h3 { font-family: 'Shippori Mincho', serif; font-weight: 700; }
 
-        /* --- ヘッダー領域 --- */
+        /* --- Header --- */
         .main-header {
             background-color: var(--white);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 2000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .header-banner img {
-            width: 100%;
-            height: auto;
+        .header-logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* ハンバーガーメニューボタン */
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 3000;
+            padding: 10px;
+        }
+
+        .menu-btn span {
             display: block;
-            max-height: 400px;
-            object-fit: cover;
+            width: 30px;
+            height: 2px;
+            background-color: var(--dark-brown);
+            margin-bottom: 6px;
+            transition: 0.3s;
         }
 
-        /* ナビゲーション */
-        .header-nav {
-            background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-pink));
-            padding: 10px 0;
-        }
-
-        .header-nav ul {
+        /* ナビゲーション（隠しメニュー） */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%; /* 最初は隠れている */
+            width: 250px;
+            height: 100vh;
+            background-color: var(--white);
             display: flex;
-            justify-content: center;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            flex-wrap: wrap; /* スマホで入り切らない時に折り返す */
+            flex-direction: column;
+            padding-top: 100px;
+            transition: 0.5s;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
         }
 
-        .header-nav li {
-            margin: 5px 15px;
-        }
+        .nav-menu.active { right: 0; }
 
-        .header-nav a {
+        .nav-menu a {
             text-decoration: none;
-            color: var(--text-color);
-            font-weight: bold;
-            font-size: 0.9rem;
+            color: var(--dark-brown);
+            padding: 20px 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        /* --- メインコンテンツ --- */
+        /* --- TOP セクション --- */
         .hero {
-            padding: 60px 20px;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('header.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
             text-align: center;
-            background: var(--pastel-blue);
         }
 
-        .concept {
-            padding: 60px 20px;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .hero-content h2 { font-size: 2.5rem; letter-spacing: 0.2em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
 
-        /* 商品一覧（グリッドレイアウト） */
-        .products {
-            padding: 40px 20px;
+        /* --- 各セクションの共通設定 --- */
+        section { padding: 100px 20px; max-width: 900px; margin: 0 auto; text-align: center; }
+        .section-title { margin-bottom: 40px; font-size: 2rem; border-bottom: 1px solid var(--pastel-pink); display: inline-block; padding-bottom: 10px; }
+
+        /* ABOUT US */
+        #about { background-color: var(--white); max-width: 100%; }
+        .about-text { max-width: 600px; margin: 0 auto; text-align: left; }
+
+        /* LINE UP */
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 画面幅に合わせて自動調整 */
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
         }
 
         .product-card {
             background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            width: 100%;
-            max-width: 340px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        .product-img {
-            height: 200px;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .product-card img { width: 100%; border-radius: 3px; margin-bottom: 15px; }
+
+        /* CONTACT */
+        .construction-box {
+            padding: 40px;
+            border: 1px dashed var(--light-brown);
+            color: var(--light-brown);
+            background-color: var(--pastel-pink);
         }
 
-        .img-blue { background-color: var(--pastel-blue); }
-        .img-pink { background-color: var(--pastel-pink); }
+        footer { padding: 40px; background-color: var(--dark-brown); color: var(--white); text-align: center; font-size: 0.8rem; }
 
-        .product-info { padding: 20px; text-align: center; }
-        .price { display: block; margin: 10px 0; color: var(--accent-pink); font-weight: bold; }
-        .btn {
-            display: inline-block;
-            padding: 12px 35px; /* スマホでも押しやすいサイズ */
-            background-color: var(--accent-pink);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 1rem;
-        }
-
-        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #bbb; }
-
-        /* --- スマホ専用の微調整 --- */
-        @media (max-width: 480px) {
-            h2 { font-size: 1.5rem; }
-            .header-nav li { margin: 5px 8px; }
-            .header-nav a { font-size: 0.8rem; }
-            .products { grid-template-columns: 1fr; } /* スマホは1列 */
+        @media (max-width: 600px) {
+            .hero-content h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
     <header class="main-header">
-        <div class="header-banner">
-            <a href="index.html">
-                <img src="header.png" alt="mumuクッキー">
-            </a>
+        <div class="header-logo">
+            <a href="#home"><img src="header.png" alt="mumucookies"></a>
         </div>
-        <nav class="header-nav">
-            <ul>
-                <li><a href="#home">ホーム</a></li>
-                <li><a href="#menu">クッキー一覧</a></li>
-                <li><a href="#about">お店について</a></li>
-                <li><a href="#contact">お問い合わせ</a></li>
-            </ul>
+        
+        <button class="menu-btn" id="menu-btn">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-menu" id="nav-menu">
+            <a href="#home">TOP</a>
+            <a href="#about">ABOUT US</a>
+            <a href="#lineup">LINE UP</a>
+            <a href="#contact">お問い合わせ</a>
         </nav>
     </header>
 
-    <section class="hero" id="home">
-        <h2>甘い、しあわせを贈る。</h2>
-        <p>こだわりの素材で焼いた、動物たちのクッキー缶</p>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>mumucookies</h2>
+            <p>こだわりの素材と、シックな彩りを添えて。</p>
+        </div>
     </section>
 
-    <section class="concept" id="about">
-        <h2>Our Concept</h2>
-        <p>「mumuクッキー」へようこそ。<br>
-        韓国のカフェのような、淡くて優しい世界観を詰め込みました。</p>
+    <section id="about">
+        <h2 class="section-title">ABOUT US</h2>
+        <div class="about-text">
+            <p>クッキー作りで私が大切にしているのは、一口食べた瞬間に心が解けるような、優しくて深い味わいです。</p>
+            <p>厳選したバターと、季節の香り。大人の方にも楽しんでいただけるよう、甘さを控えめに、素材本来の風味を引き立てる焼き上がりにこだわっています。</p>
+            <p>「mumucookies」が、あなたの日常に小さな幸せを運べますように。店主より愛を込めて。</p>
+        </div>
     </section>
 
-    <section class="products" id="menu">
-        <div class="product-card">
-            <div class="product-img img-blue">[くまさんクッキー缶 画像]</div>
-            <div class="product-info">
+    <section id="lineup">
+        <h2 class="section-title">LINE UP</h2>
+        <div class="product-grid">
+            <div class="product-card">
                 <h3>くまさんクッキー缶</h3>
-                <span class="price">¥2,800 (tax in)</span>
-                <a href="#" class="btn">詳細をみる</a>
+                <p>ココアとナッツの贅沢な味わい</p>
+                <p>¥2,800 (tax in)</p>
             </div>
-        </div>
-        <div class="product-card">
-            <div class="product-img img-pink">[うさぎさんくっきー缶 画像]</div>
-            <div class="product-info">
-                <h3>うさぎさんくっきー缶</h3>
-                <span class="price">¥2,800 (tax in)</span>
-                <a href="#" class="btn">詳細をみる</a>
+            <div class="product-card">
+                <h3>うさぎさんクッキー缶</h3>
+                <p>ベリーとバニラの華やかなセット</p>
+                <p>¥2,800 (tax in)</p>
             </div>
         </div>
     </section>
 
-    <footer id="contact">
-        &copy; 2024 mumuクッキー. All rights reserved.
+    <section id="contact">
+        <h2 class="section-title">CONTACT</h2>
+        <div class="construction-box">
+            <p>ただいまお問い合わせページは工事中です。</p>
+            <p>準備が整うまで今しばらくお待ちくださいませ。</p>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 mumucookies. All rights reserved.
     </footer>
 
+    <script>
+        // ハンバーガーメニューの開閉
+        const btn = document.getElementById('menu-btn');
+        const menu = document.getElementById('nav-menu');
+        const links = document.querySelectorAll('.nav-menu a');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('active');
+        });
+
+        // リンクをクリックしたらメニューを閉じる
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
