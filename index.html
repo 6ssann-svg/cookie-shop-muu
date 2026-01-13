@@ -2,8 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Shop | Pastel Sweets</title>
+    <title>mumuクッキー | 手作りクッキーのお店</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&family=Shippori+Mincho&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --pastel-blue: #E3F2FD;
@@ -22,26 +23,60 @@
             line-height: 1.6;
         }
 
-        h1, h2 {
+        h1, h2, h3 {
             font-family: 'Shippori Mincho', serif;
             font-weight: 500;
         }
 
-        /* Header */
-        header {
-            padding: 20px;
-            text-align: center;
+        /* --- Header 修正 --- */
+        .main-header {
             background: linear-gradient(135deg, var(--pastel-blue), var(--pastel-pink));
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .logo {
-            font-size: 1.8rem;
-            letter-spacing: 0.1em;
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 60px; /* 切り抜いたheader.pngのサイズに合わせて調整 */
+            width: auto;
+            display: block;
+        }
+
+        .header-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-nav li {
+            margin-left: 20px;
+        }
+
+        .header-nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .header-nav a:hover {
             color: var(--white);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
         }
 
-        /* Hero Section */
+        /* --- Hero Section --- */
         .hero {
             height: 400px;
             display: flex;
@@ -65,7 +100,7 @@
             opacity: 0.6;
         }
 
-        /* Concept */
+        /* --- Content Sections --- */
         .concept {
             padding: 60px 20px;
             text-align: center;
@@ -73,7 +108,6 @@
             margin: 0 auto;
         }
 
-        /* Product Section */
         .products {
             padding: 40px 20px;
             display: flex;
@@ -92,9 +126,7 @@
             transition: transform 0.3s ease;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
+        .product-card:hover { transform: translateY(-5px); }
 
         .product-img {
             height: 250px;
@@ -109,17 +141,8 @@
         .img-blue { background-color: var(--pastel-blue); }
         .img-pink { background-color: var(--pastel-pink); }
 
-        .product-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .price {
-            display: block;
-            margin: 10px 0;
-            color: var(--accent-pink);
-            font-weight: bold;
-        }
+        .product-info { padding: 20px; text-align: center; }
+        .price { display: block; margin: 10px 0; color: var(--accent-pink); font-weight: bold; }
 
         .btn {
             display: inline-block;
@@ -132,38 +155,51 @@
             transition: opacity 0.3s;
         }
 
-        .btn:hover {
-            opacity: 0.8;
-        }
+        footer { padding: 40px; text-align: center; font-size: 0.8rem; color: #bbb; }
 
-        footer {
-            padding: 40px;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #bbb;
+        /* スマホ対応 */
+        @media (max-width: 600px) {
+            .header-container { flex-direction: column; }
+            .header-nav li { margin: 10px 10px 0; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">PASTEL COOKIE</div>
+    <header class="main-header">
+        <div class="header-container">
+            <h1 class="logo">
+                <a href="index.html">
+                    <img src="header.png" alt="mumuクッキー">
+                </a>
+            </h1>
+
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="#home">ホーム</a></li>
+                    <li><a href="#menu">クッキー一覧</a></li>
+                    <li><a href="#about">お店について</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section class="hero">
+    <section class="hero" id="home">
         <div>
             <h2>甘い、しあわせを贈る。</h2>
             <p>こだわりの素材で焼いた、動物たちのクッキー缶</p>
         </div>
     </section>
 
-    <section class="concept">
+    <section class="concept" id="about">
         <h2>Our Concept</h2>
-        <p>韓国のカフェのような、淡くて優しい世界観を詰め込みました。<br>
+        <p>「mumuクッキー」へようこそ。<br>
+        韓国のカフェのような、淡くて優しい世界観を詰め込みました。<br>
         大切な人へのギフトや、自分へのご褒美に。</p>
     </section>
 
-    <section class="products">
+    <section class="products" id="menu">
         <div class="product-card">
             <div class="product-img img-blue">
                 [くまさんクッキー缶 画像]
@@ -189,8 +225,8 @@
         </div>
     </section>
 
-    <footer>
-        &copy; 2024 Pastel Cookie Shop. All rights reserved.
+    <footer id="contact">
+        &copy; 2024 mumuクッキー. All rights reserved.
     </footer>
 
 </body>
